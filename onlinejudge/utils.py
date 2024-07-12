@@ -5,6 +5,7 @@ the module for those who make programs using online-judge-tools as a library
 
 import contextlib
 import http
+import os
 import pathlib
 from logging import getLogger
 from typing import *
@@ -15,8 +16,8 @@ from onlinejudge.type import *
 
 logger = getLogger(__name__)
 
-user_data_dir = pathlib.Path(appdirs.user_data_dir('online-judge-tools'))
-user_cache_dir = pathlib.Path(appdirs.user_cache_dir('online-judge-tools'))
+user_data_dir = pathlib.Path(os.getenv('ONLINE_JUDGE_TOOLS_DATA_DIR', appdirs.user_data_dir('online-judge-tools')))
+user_cache_dir = pathlib.Path(os.getenv('ONLINE_JUDGE_TOOLS_CACHE_DIR', appdirs.user_cache_dir('online-judge-tools')))
 
 _DEFAULT_SESSION = None  # Optional[requests.Session]
 
